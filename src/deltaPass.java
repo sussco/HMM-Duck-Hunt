@@ -9,16 +9,15 @@ public class deltaPass {
 	public deltaPass(matrix A, matrix B, matrix pi, int[] obsSequence) {
 		delta = new double[A.nline][obsSequence.length];
 		delta_index = new int[A.nline][obsSequence.length];
-
 		for(int state=0; state < A.nline; state++) {
-			delta[state][0] = B.mat[state][obsSequence[0]] * pi.mat[0][state];
+			delta[state][0] = B.mat[state][0] * pi.mat[0][state];
 		}
 		for(int timestep = 1; timestep < obsSequence.length; timestep++) {
 			for(int state = 0; state < A.nline; state++) {
 				for(int j = 0; j < A.nline; j++) {
 					double a = B.mat[state][obsSequence[timestep]] *
 							A.mat[j][state] * delta[j][timestep - 1];
-					if(delta[state][timestep] <=a) {
+					if(delta[state][timestep] <= a) {
 						delta[state][timestep] = a;
 						delta_index[state][timestep] = j;
 					}

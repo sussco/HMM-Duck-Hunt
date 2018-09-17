@@ -7,14 +7,14 @@ public class gradeC {
 	public static void main(String[] args) throws IOException {
 		
 		
-		double[][] tMatrix = {{0.54, 0.26, 0.20}, {0.19, 0.53, 0.28}, {0.22 , 0.18, 0.6}};
-		matrix A = new matrix(3, 3, tMatrix);
-		
-		double[][] eMatrix = {{0.5, 0.2, 0.11, 0.19}, {0.22, 0.28, 0.23, 0.27}, {0.19, 0.21, 0.15 , 0.45}};
-		matrix B = new matrix(3, 4, eMatrix);
-		
-		double[][] piMat = {{0.3, 0.2, 0.5}};
-		matrix pi = new matrix(1, 3, piMat); 
+//		double[][] tMatrix = {{0.54, 0.26, 0.20}, {0.19, 0.53, 0.28}, {0.22 , 0.18, 0.6}};
+//		matrix A = new matrix(3, 3, tMatrix);
+//		
+//		double[][] eMatrix = {{0.5, 0.2, 0.11, 0.19}, {0.22, 0.28, 0.23, 0.27}, {0.19, 0.21, 0.15 , 0.45}};
+//		matrix B = new matrix(3, 4, eMatrix);
+//		
+//		double[][] piMat = {{0.3, 0.2, 0.5}};
+//		matrix pi = new matrix(1, 3, piMat); 
 		
 		// My init
 //		double[][] tMatrix = {{0.5, 0.2, 0.3}, {0.05, 0.53, 0.42}, {0.3 , 0.2, 0.5}};
@@ -25,7 +25,7 @@ public class gradeC {
 //		
 //		double[][] piMat = {{0.8, 0.1, 0.1}};
 //		matrix pi = new matrix(1, 3, piMat); 
-//		
+////		
 		
 		
 //		double[][] tMatrix = {{0.34, 0.325, 0.335}, {0.31, 0.35, 0.34}, {0.33 , 0.338, 0.342}};
@@ -41,14 +41,14 @@ public class gradeC {
 		
 		
 		
-//		double[][] tMatrix = {{1.0/3, 1.0/3, 1.0/3}, {1.0/3, 1.0/3, 1.0/3}, {1.0/3 , 1.0/3, 1.0/3}};
-//		matrix A = new matrix(3, 3, tMatrix);
+//		double[][] tMatrix = {{1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}};
+//		matrix A = new matrix(4, 4, tMatrix);
 //		
-//		double[][] eMatrix = {{1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}};
-//		matrix B = new matrix(3, 4, eMatrix);
+//		double[][] eMatrix = {{1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}, {1.0/4, 1.0/4, 1.0/4, 1.0/4}};
+//		matrix B = new matrix(4, 4, eMatrix);
 //		
-//		double[][] piMat = {{1.0/3, 1.0/3, 1.0/3}};
-//		matrix pi = new matrix(1, 3, piMat);
+//		double[][] piMat = {{1.0/4, 1.0/4, 1.0/4, 1.0/4}};
+//		matrix pi = new matrix(1, 4, piMat);
 
 		
 
@@ -63,30 +63,36 @@ public class gradeC {
 		
 		//  Near the results
 		       
-//		double[][] tMatrix = {{0.67, 0.1, 0.23}, {0.12, 0.77, 0.11}, {0.22 , 0.28, 0.5}};
-//		matrix A = new matrix(3, 3, tMatrix);
-//		
-//
-//		double[][] eMatrix = {{0.72, 0.18, 0.09, 0.01}, {0.12, 0.36, 0.33, 0.19}, {0.05, 0.05, 0.25 , 0.65}};
-//		matrix B = new matrix(3, 4, eMatrix);
-//		
-//		double[][] piMat = {{0.98, 0.01, 0.01}};
-//		matrix pi = new matrix(1, 3, piMat); 
+		double[][] tMatrix = {{0.67, 0.1, 0.23}, {0.12, 0.77, 0.11}, {0.22 , 0.28, 0.5}};
+		matrix A = new matrix(3, 3, tMatrix);
+		
+
+		double[][] eMatrix = {{0.72, 0.18, 0.09, 0.01}, {0.12, 0.36, 0.33, 0.19}, {0.05, 0.05, 0.25 , 0.65}};
+		matrix B = new matrix(3, 4, eMatrix);
+		
+		double[][] piMat = {{0.98, 0.01, 0.01}};
+		matrix pi = new matrix(1, 3, piMat); 
+		
+		
+		//uniform init
+//		matrix A = new matrix(3,3);
+//		matrix B = new matrix(3,4);
+//		matrix pi = new matrix(1,3);
 		
 		
 		
 		// Less hidden states
-//		matrix A = new matrix(7,7);
+//		matrix A = new matrix(5,5);
 //		A.print();
-//		matrix B = new matrix(7,7);
-//		matrix pi = new matrix(1,7);
+//		matrix B = new matrix(5,5);
+//		matrix pi = new matrix(1,5);
 		// More hidden states
 		BufferedReader lecteurAvecBuffer = null;
 	    String ligne;
 		lecteurAvecBuffer = new BufferedReader(new FileReader(args[0]));
 	    ligne = lecteurAvecBuffer.readLine();
 	    String[] elements = ligne.split(" ");
-	    //int N_Observations = 1000;
+	   // int N_Observations = 0;
 	    int N_Observations = elements.length-1;
 
 	    //int[] obsSequenceVector = new int[elements.length];
@@ -102,7 +108,6 @@ public class gradeC {
 	    double oldLogProb = -98465426;
 	    betaPass b; 
 	    gammas gam;
-	    boolean looped = false;
 	    while(logProb > oldLogProb) {
 	    	iter++;
 	    	b = new betaPass(A, B, obsSequenceVector, a, true /*scaling*/);
