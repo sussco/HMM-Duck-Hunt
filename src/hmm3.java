@@ -10,8 +10,8 @@ public static void main(String[] args) throws IOException {
 		BufferedReader lecteurAvecBuffer = null;
 		    String ligne;
 
-			//lecteurAvecBuffer = new BufferedReader(new InputStreamReader(System.in));
-		    lecteurAvecBuffer = new BufferedReader(new FileReader(args[0]));
+			lecteurAvecBuffer = new BufferedReader(new InputStreamReader(System.in));
+		    //lecteurAvecBuffer = new BufferedReader(new FileReader(args[0]));
 		    ligne = lecteurAvecBuffer.readLine();
 		    String[] elements = ligne.split(" ");
 		    double[] TransitionVector = new double[elements.length];
@@ -30,20 +30,19 @@ public static void main(String[] args) throws IOException {
 		    
 		    ligne = lecteurAvecBuffer.readLine();
 		    elements = ligne.split(" ");
-		    double[] initialStateProbabilityVector = new double[elements.length-1];
-		    for(int i = 0; i < elements.length-1; i++) {
-		    	initialStateProbabilityVector[i] = Double.parseDouble(elements[i+1]);
+		    double[] initialStateProbabilityVector = new double[elements.length];
+		    for(int i = 0; i < elements.length; i++) {
+		    	initialStateProbabilityVector[i] = Double.parseDouble(elements[i]);
 		    }
 		    
 		    matrix initStateProbMatrix = new matrix(initialStateProbabilityVector);
 		    
 		    ligne = lecteurAvecBuffer.readLine();
 		    elements = ligne.split(" ");
-		    int[] obsSequenceVector = new int[elements.length];
-		    for(int i = 0; i < elements.length; i++) {
-		    	obsSequenceVector[i] = Integer.parseInt(elements[i]);
+		    int[] obsSequenceVector = new int[elements.length-1];
+		    for(int i = 0; i < elements.length-1; i++) {
+		    	obsSequenceVector[i] = Integer.parseInt(elements[i+1]);
 		    }
-		    
 		    
 		    int iter = 0;
 		    alphaPass a = new alphaPass(TransitionMatrix, EmissionMatrix, initStateProbMatrix, obsSequenceVector, true /* scaling*/);
