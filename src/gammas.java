@@ -1,11 +1,11 @@
 
-public class gammas {
+public class Gammas {
 	
 	public double[][][] digamma;
 	public double[][] gamma;
 	// digamma[i][j][timestep]
 	
-	public gammas(matrix A, matrix B, int[] obsSequence, alphaPass alphaP, betaPass betaP) {
+	public Gammas(Matrix A, Matrix B, int[] obsSequence, AlphaPass alphaP, BetaPass betaP) {
 		digamma = new double[A.nline][A.ncol][obsSequence.length];
 		gamma = new double[A.ncol][obsSequence.length];
 		for(int timestep = 0; timestep < obsSequence.length- 1; timestep ++) {

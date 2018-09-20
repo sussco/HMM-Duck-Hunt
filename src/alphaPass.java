@@ -1,12 +1,12 @@
 
-public class alphaPass {
+public class AlphaPass {
 
 	double[][] alpha; // columns = timestep
 						// lines = state
 	double[] scale; // index = timestep
 	
-	
-	public alphaPass(matrix A, matrix B, matrix pi, int[] obsSequence) {
+	// Compute the alpha pass with A = Transition Matrix, B = Emission
+	public AlphaPass(Matrix A, Matrix B, Matrix pi, int[] obsSequence) {
 		alpha = new double[A.nline][obsSequence.length];
 		for(int state=0; state < A.nline; state++) {
 			alpha[state][0] = B.mat[state][obsSequence[0]] * pi.mat[0][state];
@@ -22,7 +22,9 @@ public class alphaPass {
 		}
 	}
 	
-	public alphaPass(matrix A, matrix B, matrix pi, int[] obsSequence, boolean scaling) {
+	
+	// Compute the alpha pass with scaling, same parameters as above
+	public AlphaPass(Matrix A, Matrix B, Matrix pi, int[] obsSequence, boolean scaling) {
 		alpha = new double[A.nline][obsSequence.length];
 		scale = new double[obsSequence.length];
 		// compute alphas..[0]
@@ -54,6 +56,7 @@ public class alphaPass {
 		}
 	}
 	
+	// Get the regular probability, which is the sum of the last column 
 	public double getProbability() {
 		double sum = 0.0;
 	    for(int state = 0; state < this.alpha.length; state++) {
@@ -62,6 +65,8 @@ public class alphaPass {
 	    return sum;
 	}
 	
+	
+	// Get the logarithm probability of the alphaPass
 	public double getLogProb() {
 		double logProb = 0.0;
 	    for(int i = 0; i < scale.length; i++) {
@@ -70,6 +75,8 @@ public class alphaPass {
 	    return -logProb;
 	}
 	
+	
+	// Print the matrix of the alphaPass
 	public void print() {
 		System.out.print(this.alpha.length + " ");
 		System.out.print(this.alpha[0].length + " ");

@@ -2,10 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class hmm {
+public class Hmm0 {
 
 	public static void main(String[] args) throws IOException{
 
+		
+		//--------------------  Get the matrices -------------------------------- //
+		
 		 BufferedReader lecteurAvecBuffer = null;
 		    String ligne;
 
@@ -17,7 +20,7 @@ public class hmm {
 		    for(int i = 0; i < elements.length; i++) {
 		    	TransitionVector[i] = Double.parseDouble(elements[i]);
 		    }
-		    matrix TransitionMatrix = new matrix(TransitionVector);
+		    Matrix TransitionMatrix = new Matrix(TransitionVector);
 
 		    ligne = lecteurAvecBuffer.readLine();
 		    elements = ligne.split(" ");
@@ -25,7 +28,7 @@ public class hmm {
 		    for(int i = 0; i < elements.length; i++) {
 		    	EmissionVector[i] = Double.parseDouble(elements[i]);
 		    }
-		    matrix EmissionMatrix = new matrix(EmissionVector);
+		    Matrix EmissionMatrix = new Matrix(EmissionVector);
 
 		    ligne = lecteurAvecBuffer.readLine();
 		    elements = ligne.split(" ");
@@ -33,12 +36,16 @@ public class hmm {
 		    for(int i = 0; i < elements.length ; i++) {
 		    	initialStateProbabilityVector[i] = Double.parseDouble(elements[i]);
 		    }
+		    
+		    //-----------------------------------------------------------------------//
+		    
+		    //---------------------------- Multiply Matrices ------------------------//
 
-		    matrix initStateProbMatrix = new matrix(initialStateProbabilityVector);
+		    Matrix initStateProbMatrix = new Matrix(initialStateProbabilityVector);
 
-		    matrix nextStateVector = new matrix(initStateProbMatrix, TransitionMatrix);
+		    Matrix nextStateVector = new Matrix(initStateProbMatrix, TransitionMatrix);
 
-		    matrix nextEmissionVector = new matrix(nextStateVector, EmissionMatrix);
+		    Matrix nextEmissionVector = new Matrix(nextStateVector, EmissionMatrix);
 
 		    nextEmissionVector.print();
 		    lecteurAvecBuffer.close();

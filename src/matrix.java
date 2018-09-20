@@ -1,12 +1,12 @@
 
-public class matrix {
+public class Matrix {
 
 	public int ncol;
 	public int nline;
 	public double[][] mat;
 	
-	// almost uniform initialization
-	public matrix(int nline, int ncol) {
+	// Use this constructor to initialize the parameters uniformally
+	public Matrix(int nline, int ncol) {
 		this.ncol = ncol;
 		this.nline = nline;
 		this.mat = new double[nline][ncol];
@@ -21,24 +21,31 @@ public class matrix {
 		}
 	}
 	
-	public matrix(int nline, int ncol, double[][] mat) {
+	
+	// Use this constructeur to create a Matrix object whose matrice is mat
+	public Matrix(int nline, int ncol, double[][] mat) {
 		this.ncol = ncol;
 		this.nline = nline;
 		this.mat = mat;
 	}
 	
-	public matrix(double[] sample) {
+	
+	// takes in input a line of the sample we are given in kattis and creates the corresponding
+	// Matrix, for example the emission matrix. The sample start with the number of line and 
+	// columns
+	public Matrix(double[] sample) {
 		this.nline = (int) sample[0];
 		this.ncol = (int) sample[1];
-		//System.out.println(nline);
-		//System.out.println(ncol);
 		this.mat = new double[nline][ncol];
 		for(int i=0; i < sample.length - 2 ; i++) {
 			this.mat[i/ncol][i% ncol] = sample[i + 2];
 		}		
 	}
 	
-	public matrix(matrix A, matrix B) {
+	
+	
+	// This constructor returns the multiplication of matrix A and B
+	public Matrix(Matrix A, Matrix B) {
 		if(A.ncol != B.nline) {
 			System.out.println("Error, incorrect dimensions");
 			throw new IllegalArgumentException();
@@ -55,7 +62,8 @@ public class matrix {
 		}
 	}
 	
-	
+	// This function prints the matrix on the standard output as a list of element of the matrix
+	// starting by the dimensoins
 	public void print() {
 		System.out.print(this.mat.length + " ");
 		System.out.print(this.mat[0].length + " ");
@@ -68,7 +76,7 @@ public class matrix {
 		}
 	}
 	
-	
+	// Print the matrix for the HMM2 task
 	public void printHMM2() {
 		for (int i = 0; i < this.mat.length; i++) {
 		    for (int j = 0; j < this.mat[i].length; j++) {
@@ -78,6 +86,8 @@ public class matrix {
 		}
 	}
 	
+	
+	// Print for the HMM3 task
 	public void printHMM3() {
 		System.out.print(this.mat.length + " ");
 		System.out.print(this.mat[0].length + " ");
@@ -90,8 +100,8 @@ public class matrix {
 		System.out.println(" ");
 	}
 	
-	
-	public void updateTransitionMatrix(gammas gam) {
+	// To use on the transition matrix, it updates its parameters
+	public void updateTransitionMatrix(Gammas gam) {
 		double numerator = 0.0;
 		double denumerator = 0.0;
 		for(int i = 0; i < this.nline; i++) {
@@ -107,7 +117,9 @@ public class matrix {
 		}
 	}
 	
-	public void updateEmissionMatrix(gammas gam, int[] obsSequence) {
+	
+	// Updates the parameter of the Emission Matrix
+	public void updateEmissionMatrix(Gammas gam, int[] obsSequence) {
 		double numerator = 0.0;
 		double denumerator = 0.0;
 		for(int j = 0; j < this.nline; j++) {
@@ -125,8 +137,8 @@ public class matrix {
 		}
 	}
 	
-	
-	public void updateInitialStateMatrix(gammas gam) {
+	// Updates the parameter of the Initial state probability matrix
+	public void updateInitialStateMatrix(Gammas gam) {
 		for(int i = 0; i < this.mat[0].length; i++) {
 			this.mat[0][i] = gam.gamma[i][0];
 		}

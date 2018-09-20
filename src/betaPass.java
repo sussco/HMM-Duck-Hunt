@@ -1,12 +1,12 @@
 
-public class betaPass {
+public class BetaPass {
 	
 	public double[][] beta;
 	// column = timestep
 	// line = state
 	
-	
-	public betaPass(matrix A, matrix B, int[] obsSequence) {
+	// Computes the BetaPass
+	public BetaPass(Matrix A, Matrix B, int[] obsSequence) {
 		beta = new double[A.nline][obsSequence.length];
 		for(int state=0; state < A.nline; state++) {
 			beta[state][beta[0].length - 1] = 1;
@@ -22,7 +22,8 @@ public class betaPass {
 		}
 	}
 	
-	public betaPass(matrix A, matrix B, int[] obsSequence, alphaPass a, boolean scaling) {
+	// Compute the beta pass with scaling
+	public BetaPass(Matrix A, Matrix B, int[] obsSequence, AlphaPass a, boolean scaling) {
 		beta = new double[A.nline][obsSequence.length];
 		for(int state=0; state < A.nline; state++) {
 			beta[state][obsSequence.length-1] = a.scale[obsSequence.length-1];
@@ -55,3 +56,4 @@ public class betaPass {
 		}
 	}
 }
+

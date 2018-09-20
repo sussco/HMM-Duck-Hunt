@@ -1,12 +1,14 @@
 
-public class deltaPass {
+public class DeltaPass {
 
 	double[][] delta;
 	int[][] delta_index;
 	// columns = timestep
 	// lines = state
 	
-	public deltaPass(matrix A, matrix B, matrix pi, int[] obsSequence) {
+	
+	// Computes the deltaPass
+	public DeltaPass(Matrix A, Matrix B, Matrix pi, int[] obsSequence) {
 		delta = new double[A.nline][obsSequence.length];
 		delta_index = new int[A.nline][obsSequence.length];
 		for(int state=0; state < A.nline; state++) {
@@ -28,9 +30,11 @@ public class deltaPass {
 	
 	
 	
-	
-	public matrix getStateSequence(){
-		matrix sequence = new matrix(1, delta[0].length);
+	// Returns the most likely state sequence knowing the delta Pass (so the observation sequence)
+	// A, B and Pi
+	// To compute after creating the instance
+	public Matrix getStateSequence(){
+		Matrix sequence = new Matrix(1, delta[0].length);
 		for(int i = 0; i < delta.length; i++) {
 			if(delta[(int) sequence.mat[0][delta[0].length-1]][delta[0].length-1] < delta[i][delta[0].length-1]) {
 				sequence.mat[0][delta[0].length-1] =  i;
